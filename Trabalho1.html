@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tabela Livros</title>
 </head>
 <body>
     <label for="nome-livro">Livro:</label>
@@ -13,10 +13,10 @@
     <input type="text" id="autor-livro" placeholder="Autor do livro">
     <br>
     <label for="nota-livro">Nota:</label>
-    <input type="text" id="nota-livro" placeholder="Nota pro livro">
+    <input type="text" id="nota-livro" placeholder="Nota para o livro">
     <br>
-    <button type="button" id="botao-adicionar">Adicionar à tabela</button>
-    
+    <button type="button" id="botao-adicionar">Adicionar à Tabela</button>
+
     <table>
         <thead>
             <tr>
@@ -26,12 +26,14 @@
             </tr>
         </thead>
         <tbody>
-            
+
         </tbody>
     </table>
 
     <script type="text/javascript">
-        function adicionar(nome, autor, nota) {
+        let dadosLivros = []; 
+
+        function adicionar(nome, autor, nota){
             let tabela = document.querySelector("tbody");
             let tr = document.createElement("tr");
             let coluna1 = document.createElement("td");
@@ -51,14 +53,18 @@
             let nome = document.getElementById('nome-livro').value;
             let autor = document.getElementById('autor-livro').value;
             let nota = document.getElementById('nota-livro').value;
+
             
+            dadosLivros.push({ livro: nome, autor: autor, nota: nota});
+
+            
+            let jsonDadosLivros = JSON.stringify(dadosLivros);
+            console.log(jsonDadosLivros); 
             
             adicionar(nome, autor, nota);
+
             
             
-            document.getElementById('nome-livro').value = "";
-            document.getElementById('autor-livro').value = "";
-            document.getElementById('nota-livro').value = "";
         });
     </script>
 </body>
