@@ -31,8 +31,10 @@
     </table>
 
     <script type="text/javascript">
-        let dadosLivros = []; 
+        
+        let dadosLivros = JSON.parse(localStorage.getItem('dadosLivros')) || []; 
 
+        
         function adicionar(nome, autor, nota){
             let tabela = document.querySelector("tbody");
             let tr = document.createElement("tr");
@@ -49,23 +51,34 @@
             tr.appendChild(coluna3);
         }
 
+        // Função para atualizar a tabela com os dados do array
+        function atualizarTabela() {
+            document.querySelector("tbody").innerHTML = ""; 
+            dadosLivros.forEach(livro => {
+                adicionar(livro.livro, livro.autor, livro.nota); 
+            });
+        }
+
+        
         document.getElementById('botao-adicionar').addEventListener('click', () => {
             let nome = document.getElementById('nome-livro').value;
             let autor = document.getElementById('autor-livro').value;
             let nota = document.getElementById('nota-livro').value;
 
             
-            dadosLivros.push({ livro: nome, autor: autor, nota: nota});
+            dadosLivros.push({ livro: nome, autor: autor, nota: nota });
 
             
-            let jsonDadosLivros = JSON.stringify(dadosLivros);
-            console.log(jsonDadosLivros); 
+            localStorage.setItem('dadosLivros', JSON.stringify(dadosLivros));
+
             
             adicionar(nome, autor, nota);
 
             
-            
         });
+
+        
+        window.onload = atualizarTabela;
     </script>
 </body>
 </html>
