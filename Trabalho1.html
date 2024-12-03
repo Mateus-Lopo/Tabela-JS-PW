@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="nome-livro">Livro:</label>
+    <input type="text" id="nome-livro" placeholder="Nome do livro">
+    <br>
+    <label for="autor-livro">Autor:</label>
+    <input type="text" id="autor-livro" placeholder="Autor do livro">
+    <br>
+    <label for="nota-livro">Nota:</label>
+    <input type="text" id="nota-livro" placeholder="Nota pro livro">
+    <br>
+    <button type="button" id="botao-adicionar">Adicionar à tabela</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Livro</th>
+                <th>Autor</th>
+                <th>Nota</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        function adicionar(nome, autor, nota) {
+            let tabela = document.querySelector("tbody");
+            let tr = document.createElement("tr");
+            let coluna1 = document.createElement("td");
+            coluna1.innerText = nome;
+            let coluna2 = document.createElement("td");
+            coluna2.innerText = autor;
+            let coluna3 = document.createElement("td");
+            coluna3.innerText = nota;
+
+            tabela.appendChild(tr);
+            tr.appendChild(coluna1);
+            tr.appendChild(coluna2);
+            tr.appendChild(coluna3);
+        }
+
+        document.getElementById('botao-adicionar').addEventListener('click', () => {
+            let nome = document.getElementById('nome-livro').value;
+            let autor = document.getElementById('autor-livro').value;
+            let nota = document.getElementById('nota-livro').value;
+            
+            
+            adicionar(nome, autor, nota);
+            
+            
+            document.getElementById('nome-livro').value = "";
+            document.getElementById('autor-livro').value = "";
+            document.getElementById('nota-livro').value = "";
+        });
+    </script>
+</body>
+</html>
